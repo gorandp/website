@@ -1,4 +1,4 @@
-## Hola soy Goran probando cosas
+## Hola soy Goran Prpic probando cosas
 <!-- 
 You can use the [editor on GitHub](https://github.com/gorandp/website/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 -->
@@ -6,7 +6,7 @@ You can use the [editor on GitHub](https://github.com/gorandp/website/edit/gh-pa
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 -->
 
-Hola barto.
+Algo de texto por aquí.
 
 ### Markdown
 
