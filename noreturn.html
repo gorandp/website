@@ -16,12 +16,19 @@
 </style>
 <body>
 
-<!-- <p>
-<button onclick="myMove()">Click Me</button>
-</p> -->
+<p>
+<button onclick="changeAvatar(0)">Nahuen</button>
+<button onclick="changeAvatar(1)">Emi</button>
+<button onclick="changeAvatar(2)">Goran</button>
+<button onclick="changeAvatar(3)">Tate</button>
+<button onclick="changeAvatar(4)">Ya están en clase?</button>
+<button onclick="changeAvatar(5)">Toto</button>
+<button onclick="changeAvatar(6)">Joako</button>
+<button onclick="changeAvatar(7)">Peronchemi</button>
+</p>
 
 <!-- <div id ="myContainer"> -->
-<div id ="myAnimation"><img src="https://user-images.githubusercontent.com/56173842/116645152-90170080-a94b-11eb-9d26-29c1ae26d83f.png" width="170" height="170"></div>
+<div id ="myAnimation"><img id="avatar" src="https://user-images.githubusercontent.com/56173842/116645152-90170080-a94b-11eb-9d26-29c1ae26d83f.png" width="170" height="170"></div>
 <!-- </div> -->
 
 <script>
@@ -55,6 +62,20 @@ function myMove() {
   }
 }
 myMove();
+function changeAvatar(idx) {
+  var avatars = [
+    "https://user-images.githubusercontent.com/56173842/116645152-90170080-a94b-11eb-9d26-29c1ae26d83f.png",
+    "https://user-images.githubusercontent.com/56173842/116645159-93aa8780-a94b-11eb-8bb3-b99083baba84.png",
+    "https://user-images.githubusercontent.com/56173842/116645119-7f668a80-a94b-11eb-8987-ad0352517747.png",
+    "https://user-images.githubusercontent.com/56173842/116645139-88eff280-a94b-11eb-8baa-cabcdc36896b.png",
+    "https://user-images.githubusercontent.com/56173842/116645146-8beae300-a94b-11eb-9072-4b9d018ae5f3.png",
+    "https://user-images.githubusercontent.com/56173842/116645241-bf2d7200-a94b-11eb-9ef0-006b6facc632.png",
+    "https://user-images.githubusercontent.com/56173842/116645245-c2c0f900-a94b-11eb-9a5a-8051811f537a.png",
+    "https://user-images.githubusercontent.com/56173842/118725943-fc787780-b806-11eb-876f-49ae127b7668.png"
+  ]
+  var elem = document.getElementById("avatar");
+  elem.src = avatars[idx];
+}
 </script>
 
 </body>
