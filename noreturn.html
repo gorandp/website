@@ -17,24 +17,26 @@
 <body>
 
 <p>
-<button onclick="changeAvatar(0)">Nahuen</button>
-<button onclick="changeAvatar(1)">Emi</button>
-<button onclick="changeAvatar(2)">Goran</button>
-<button onclick="changeAvatar(3)">Tate</button>
-<button onclick="changeAvatar(4)">Ya están en clase?</button>
-<button onclick="changeAvatar(5)">Toto</button>
-<button onclick="changeAvatar(6)">Joako</button>
-<button onclick="changeAvatar(7)">Peronchemi</button>
+<button onclick="changeAvatar(0, 'Nahuen')">Nahuen</button>
+<button onclick="changeAvatar(1, 'Emi')">Emi</button>
+<button onclick="changeAvatar(2, 'Goran')">Goran</button>
+<button onclick="changeAvatar(3, 'Tate')">Tate</button>
+<button onclick="changeAvatar(4, 'Ya están en clase?')">Ya están en clase?</button>
+<button onclick="changeAvatar(5, 'Toto')">Toto</button>
+<button onclick="changeAvatar(6, 'Joako')">Joako</button>
+<button onclick="changeAvatar(7, 'Peronchemi')">Peronchemi</button>
+</p>
+<p>
+  <button id="genBtn" onclick="newAvatar()">Nuevo Nahuen</button>
 </p>
 
 <!-- <div id ="myContainer"> -->
-<div id ="myAnimation"><img id="avatar" src="https://user-images.githubusercontent.com/56173842/116645152-90170080-a94b-11eb-9d26-29c1ae26d83f.png" width="170" height="170"></div>
+  <div id ="myAnimation"><img id="avatar" name="avatar" src="https://user-images.githubusercontent.com/56173842/116645152-90170080-a94b-11eb-9d26-29c1ae26d83f.png" width="170" height="170"></div>
 <!-- </div> -->
 
 <script>
-var id = null;
-function myMove() {
-  var elem = document.getElementById("myAnimation");
+function myMove(elemId, id) {
+  var elem = document.getElementById(elemId);
   var pos_x = 0;
   var pos_y = 0;
   clearInterval(id);
@@ -61,8 +63,7 @@ function myMove() {
     elem.style.left = pos_x + 'px';
   }
 }
-myMove();
-function changeAvatar(idx) {
+function changeAvatar(idx, btnName) {
   var avatars = [
     "https://user-images.githubusercontent.com/56173842/116645152-90170080-a94b-11eb-9d26-29c1ae26d83f.png",
     "https://user-images.githubusercontent.com/56173842/116645159-93aa8780-a94b-11eb-8bb3-b99083baba84.png",
@@ -73,26 +74,71 @@ function changeAvatar(idx) {
     "https://user-images.githubusercontent.com/56173842/116645245-c2c0f900-a94b-11eb-9a5a-8051811f537a.png",
     "https://user-images.githubusercontent.com/56173842/118725943-fc787780-b806-11eb-876f-49ae127b7668.png"
   ]
-  var elem = document.getElementById("avatar");
-  elem.src = avatars[idx];
+  var btn = document.getElementById("genBtn");
+  btn.innerText = "Nuevo " + btnName
+  // var elem = document.getElementById("avatar");
+  var elems = document.getElementsByName("avatar");
+  elems.forEach(element => {
+    element.src = avatars[idx];
+  });
 }
-  
+all_avatars = 0
+x_inc_2 = []
+y_inc_2 = []
+function newAvatar() {
+  var img = document.getElementById("avatar");
+  // var elem = document.getElementById("myAnimation");
+  var someId = null;
+  var dv = document.createElement("DIV");
+  dv.id = all_avatars;
+  // dv.innerHTML = '<img id="avatar" name="avatar" src="https://user-images.githubusercontent.com/56173842/116645152-90170080-a94b-11eb-9d26-29c1ae26d83f.png" width="170" height="170"></div>';
+  dv.innerHTML = '<img id="avatar" name="avatar" src="' + img.src + '" width="170" height="170"></div>';
+  dv.style.width = "170px";
+  dv.style.height = "170px";
+  dv.style.position = "absolute";
+  all_avatars += 1
+  x_inc_2[dv.id] = 2 + Math.random()
+  y_inc_2[dv.id] = 1 + Math.random()
+  function myMove2() {
+    var ppos_x = 0;
+    var ppos_y = 0;
+    clearInterval(someId);
+    someId = setInterval(frame2, 0.1);
+    function frame2() {
+      // increment = 1
+      if (ppos_x <= 0) {
+          x_inc_2[dv.id] = 2 + Math.random();
+      }
+      if (ppos_y <= 0) {
+          y_inc_2[dv.id] = 1 + Math.random();
+      }
 
-function download(filename, text) {
-  var element = document.createElement('a');
-  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-  element.setAttribute('download', filename);
+      if (ppos_x >= window.innerWidth - 170) {
+          x_inc_2[dv.id] = -1 - Math.random();
+      }
+      if (ppos_y >= window.innerHeight - 170) {
+          y_inc_2[dv.id] = -2 - Math.random();
+      }
 
-  element.style.display = 'none';
-  document.body.appendChild(element);
-
-  element.click();
-
-  document.body.removeChild(element);
+      ppos_x+=x_inc_2[dv.id];
+      ppos_y+=y_inc_2[dv.id];
+      dv.style.top = ppos_y + 'px';
+      dv.style.left = ppos_x + 'px';
+    }
+  }
+  document.body.appendChild(dv);
+  myMove2();
 }
 
-// Start file download.
-download("virus.txt","era sarcasmo");
+function uuidv4() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
+var rootId = null;
+myMove("myAnimation", rootId);
+
 </script>
 
 </body>
