@@ -2,6 +2,9 @@
 <html>
 <body>
 
+  <p>
+    <button id="genBtn" onclick="newAvatar()">Nuevo Nahuen</button>
+  </p>
 <p>
 <button onclick="changeAvatar(0, 'Nahuen')">Nahuen</button>
 <button onclick="changeAvatar(1, 'Emi')">Emi</button>
@@ -12,12 +15,9 @@
 <button onclick="changeAvatar(6, 'Joako')">Joako</button>
 <button onclick="changeAvatar(7, 'Peronchemi')">Peronchemi</button>
 </p>
-<p>
-  <button id="genBtn" onclick="newAvatar()">Nuevo Nahuen</button>
-</p>
 
 <!-- <div id ="myContainer"> -->
-  <div id=0 style="width: 170px;height: 170px; position: absolute;"><img id="avatar" name="avatar" src="https://user-images.githubusercontent.com/56173842/116645152-90170080-a94b-11eb-9d26-29c1ae26d83f.png" width="170" height="170"></div>
+  <!-- <div id=0 style="width: 170px;height: 170px; position: absolute;"><img id="avatar" name="avatar" src="https://user-images.githubusercontent.com/56173842/116645152-90170080-a94b-11eb-9d26-29c1ae26d83f.png" width="170" height="170"></div> -->
 <!-- </div> -->
 
 <script>
@@ -40,7 +40,7 @@ function changeAvatar(idx, btnName) {
     element.src = avatars[idx];
   });
 }
-all_avatars = 1
+all_avatars = 0
 x_inc = []
 y_inc = []
 function myMove(elemId, id) {
@@ -73,12 +73,20 @@ function myMove(elemId, id) {
 }
 function newAvatar() {
   var img = document.getElementById("avatar");
+  if (img == null) {
+    img = document.createElement("IMG")
+    img.id = "avatar";
+    img.name = "avatar";
+    img.src = "https://user-images.githubusercontent.com/56173842/116645152-90170080-a94b-11eb-9d26-29c1ae26d83f.png";
+    img.width = 170;
+    img.height = 170;
+  }
   // var elem = document.getElementById("myAnimation");
   var someId = null;
   var dv = document.createElement("DIV");
   dv.id = all_avatars;
   // dv.innerHTML = '<img id="avatar" name="avatar" src="https://user-images.githubusercontent.com/56173842/116645152-90170080-a94b-11eb-9d26-29c1ae26d83f.png" width="170" height="170"></div>';
-  dv.innerHTML = '<img id="avatar" name="avatar" src="' + img.src + '" width="170" height="170"></div>';
+  dv.innerHTML = '<img id="avatar" name="avatar" src="' + img.src + '" width="170" height="170">';
   dv.style.width = "170px";
   dv.style.height = "170px";
   dv.style.position = "absolute";
@@ -89,8 +97,8 @@ function newAvatar() {
   myMove(dv.id, someId);
 }
 
-var rootId = null;
-myMove(0, rootId);
+// var rootId = null;
+newAvatar();
 
 </script>
 
