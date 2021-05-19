@@ -1,19 +1,5 @@
 <!DOCTYPE html>
 <html>
-<style>
-/* #myContainer {
-  width: 800px;
-  height: 800px;
-  position: relative;
-  background: yellow;
-} */
-#myAnimation {
-  width: 170px;
-  height: 170px;
-  position: absolute;
-  /* background-color: red; */
-}
-</style>
 <body>
 
 <p>
@@ -31,38 +17,10 @@
 </p>
 
 <!-- <div id ="myContainer"> -->
-  <div id ="myAnimation"><img id="avatar" name="avatar" src="https://user-images.githubusercontent.com/56173842/116645152-90170080-a94b-11eb-9d26-29c1ae26d83f.png" width="170" height="170"></div>
+  <div id=0 style="width: 170px;height: 170px; position: absolute;"><img id="avatar" name="avatar" src="https://user-images.githubusercontent.com/56173842/116645152-90170080-a94b-11eb-9d26-29c1ae26d83f.png" width="170" height="170"></div>
 <!-- </div> -->
 
 <script>
-function myMove(elemId, id) {
-  var elem = document.getElementById(elemId);
-  var pos_x = 0;
-  var pos_y = 0;
-  clearInterval(id);
-  id = setInterval(frame, 0.1);
-  function frame() {
-    // increment = 1
-    if (pos_x <= 0) {
-        x_inc = 2 + Math.random();
-    }
-    if (pos_y <= 0) {
-        y_inc = 1 + Math.random();
-    }
-
-    if (pos_x >= window.innerWidth - 170) {
-        x_inc = -1 - Math.random();
-    }
-    if (pos_y >= window.innerHeight - 170) {
-        y_inc = -2 - Math.random();
-    }
-
-    pos_x+=x_inc;
-    pos_y+=y_inc;
-    elem.style.top = pos_y + 'px';
-    elem.style.left = pos_x + 'px';
-  }
-}
 function changeAvatar(idx, btnName) {
   var avatars = [
     "https://user-images.githubusercontent.com/56173842/116645152-90170080-a94b-11eb-9d26-29c1ae26d83f.png",
@@ -82,9 +40,37 @@ function changeAvatar(idx, btnName) {
     element.src = avatars[idx];
   });
 }
-all_avatars = 0
-x_inc_2 = []
-y_inc_2 = []
+all_avatars = 1
+x_inc = []
+y_inc = []
+function myMove(elemId, id) {
+  var elem = document.getElementById(elemId);
+  var pos_x = 0;
+  var pos_y = 0;
+  clearInterval(id);
+  id = setInterval(frame, 0.1);
+  function frame() {
+    // increment = 1
+    if (pos_x <= 0) {
+        x_inc[elem.id] = 2 + Math.random();
+    }
+    if (pos_y <= 0) {
+        y_inc[elem.id] = 1 + Math.random();
+    }
+
+    if (pos_x >= window.innerWidth - 170) {
+        x_inc[elem.id] = -1 - Math.random();
+    }
+    if (pos_y >= window.innerHeight - 170) {
+        y_inc[elem.id] = -2 - Math.random();
+    }
+
+    pos_x+=x_inc[elem.id];
+    pos_y+=y_inc[elem.id];
+    elem.style.top = pos_y + 'px';
+    elem.style.left = pos_x + 'px';
+  }
+}
 function newAvatar() {
   var img = document.getElementById("avatar");
   // var elem = document.getElementById("myAnimation");
@@ -97,47 +83,14 @@ function newAvatar() {
   dv.style.height = "170px";
   dv.style.position = "absolute";
   all_avatars += 1
-  x_inc_2[dv.id] = 2 + Math.random()
-  y_inc_2[dv.id] = 1 + Math.random()
-  function myMove2() {
-    var ppos_x = 0;
-    var ppos_y = 0;
-    clearInterval(someId);
-    someId = setInterval(frame2, 0.1);
-    function frame2() {
-      // increment = 1
-      if (ppos_x <= 0) {
-          x_inc_2[dv.id] = 2 + Math.random();
-      }
-      if (ppos_y <= 0) {
-          y_inc_2[dv.id] = 1 + Math.random();
-      }
-
-      if (ppos_x >= window.innerWidth - 170) {
-          x_inc_2[dv.id] = -1 - Math.random();
-      }
-      if (ppos_y >= window.innerHeight - 170) {
-          y_inc_2[dv.id] = -2 - Math.random();
-      }
-
-      ppos_x+=x_inc_2[dv.id];
-      ppos_y+=y_inc_2[dv.id];
-      dv.style.top = ppos_y + 'px';
-      dv.style.left = ppos_x + 'px';
-    }
-  }
+  x_inc[dv.id] = 2 + Math.random()
+  y_inc[dv.id] = 1 + Math.random()
   document.body.appendChild(dv);
-  myMove2();
+  myMove(dv.id, someId);
 }
 
-function uuidv4() {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-    return v.toString(16);
-  });
-}
 var rootId = null;
-myMove("myAnimation", rootId);
+myMove(0, rootId);
 
 </script>
 
