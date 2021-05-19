@@ -1,24 +1,31 @@
 <!DOCTYPE html>
 <html>
+  <style>
+#downloadBtn {
+  background-color: pink;
+  position: absolute;
+  top: 90%;
+}
+  </style>
 <body>
-
+  
   <p>
     <button id="genBtn" onclick="newAvatar()">Nuevo Nahuen</button>
   </p>
-<p>
-<button onclick="changeAvatar(0, 'Nahuen')">Nahuen</button>
-<button onclick="changeAvatar(1, 'Emi')">Emi</button>
-<button onclick="changeAvatar(2, 'Goran')">Goran</button>
-<button onclick="changeAvatar(3, 'Tate')">Tate</button>
-<button onclick="changeAvatar(4, 'Ya están en clase?')">Ya están en clase?</button>
-<button onclick="changeAvatar(5, 'Toto')">Toto</button>
-<button onclick="changeAvatar(6, 'Joako')">Joako</button>
-<button onclick="changeAvatar(7, 'Peronchemi')">Peronchemi</button>
-</p>
-
+  <p>
+    <button onclick="changeAvatar(0, 'Nahuen')">Nahuen</button>
+    <button onclick="changeAvatar(1, 'Emi')">Emi</button>
+    <button onclick="changeAvatar(2, 'Goran')">Goran</button>
+    <button onclick="changeAvatar(3, 'Tate')">Tate</button>
+    <button onclick="changeAvatar(4, 'Ya están en clase?')">Ya están en clase?</button>
+    <button onclick="changeAvatar(5, 'Toto')">Toto</button>
+    <button onclick="changeAvatar(6, 'Joako')">Joako</button>
+    <button onclick="changeAvatar(7, 'Peronchemi')">Peronchemi</button>
+  </p>
 <!-- <div id ="myContainer"> -->
   <!-- <div id=0 style="width: 170px;height: 170px; position: absolute;"><img id="avatar" name="avatar" src="https://user-images.githubusercontent.com/56173842/116645152-90170080-a94b-11eb-9d26-29c1ae26d83f.png" width="170" height="170"></div> -->
 <!-- </div> -->
+<button id="downloadBtn" onclick='download("virus.txt","https:\/\/www.jw.org\/es\/")'>María vive cerca tuyo y te habló: Querés que te haga la fiestita? Haceme click y te regalo estos globos</button>
 
 <script>
 function changeAvatar(idx, btnName) {
@@ -100,7 +107,21 @@ function newAvatar() {
 // var rootId = null;
 newAvatar();
 
+function download(filename, text) {
+  var element = document.createElement('a');
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+  element.setAttribute('download', filename);
+
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
+}
+
 </script>
 
 </body>
+
 </html>
