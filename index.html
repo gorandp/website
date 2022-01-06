@@ -1,10 +1,48 @@
 <!doctype html>
   <head>
     <title>Goran Prpic's Website</title>
+    <style>
+      .box {
+        background-color: blueviolet;
+        height: 200px;
+        width: 200px;
+      }
+      .box.two {
+        background-color: burlywood;
+      }
+      .box.three {
+        background-color: paleturquoise;
+      }
+      /*
+        v-cloak sirve para tapar la página mientras Vue se carga
+        (así no se ven todos los objetos)
+      */
+      [v-cloak] {
+        display: none;
+      }
+    </style>
   </head>
   <body>
-    <div id="app">
+    <div id="app" v-cloak>
       {{ greeting }}
+      <input v-model="greeting" />
+
+      <hr/>
+
+      <!-- v-if hace que el "div" exista en el HTML o NO exista -->
+      <!-- <div v-if="isVisible" class="box"></div> -->
+      <!-- v-show en cambio, hace que el "div" SIEMPRE exista en el HTML,
+        pero le pone en el style diplay: None (es decir, mediante CSS lo
+        oculta pero no lo saca del DOM)
+      -->
+      <!-- <div v-show="isVisible" class="box"></div> -->
+
+
+      <!-- v-if / v-else-if / v-else -->
+      <div v-if="isVisible" class="box"></div>
+      <div v-else-if="isVisible2" class="box two"></div>
+      <div v-else class="box three"></div>
+
     </div>
 
     <script src="https://unpkg.com/vue@next"></script>
@@ -12,7 +50,9 @@
       let app = Vue.createApp({
         data: function() {
           return {
-            greeting: 'Hello Vue 3!'
+            greeting: 'Hello Vue 3!',
+            isVisible: true,
+            isVisible2: true
           }
         }
       })
