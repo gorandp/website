@@ -101,6 +101,19 @@
             //         inputValue: ''
             //     }
             // }
+
+            // Lifecycle hooks
+            // https://vuejs.org/guide/essentials/lifecycle.html#lifecycle-diagram
+            // https://youtu.be/FXpIoQ_rT_c?t=4400
+            created() {
+                console.log('created')
+            },
+            mounted() {
+                console.log('mounted')
+            },
+            updated() {
+                console.log('updated')
+            }
         })
 
         app.mount("#app")
