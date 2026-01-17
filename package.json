@@ -1,16 +1,22 @@
 {
-  "name": "gorandp-website-monorepo",
+  "name": "website_frontend",
   "version": "1.0.0",
-  "description": "Full-stack monorepo for React + FastAPI on Cloudflare",
+  "type": "module",
+  "description": "React + FastAPI web app hosted on Cloudflare",
   "scripts": {
-    "dev:frontend": "cd frontend && npm run dev",
-    "dev:backend": "cd backend && uv run pywrangler dev",
-    "build:frontend": "cd frontend && npm run build",
-    "deploy:frontend": "cd frontend && wrangler pages deploy dist",
-    "deploy:backend": "cd backend && uv run pywrangler deploy",
-    "deploy": "npm run build:frontend && npm run deploy:frontend && npm run deploy:backend"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3"
   },
   "devDependencies": {
-    "wrangler": "^3.0.0"
+    "@types/react": "^19.2.8",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.2",
+    "vite": "^7.3.1",
+    "wrangler": "^4.59.2"
   }
 }

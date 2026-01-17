@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "frontend",
+  "name": "website_frontend",
   "compatibility_date": "2026-01-01",
   "pages_build_output_dir": "dist",
 	"assets": {
@@ -8,6 +8,6 @@
 		"not_found_handling": "single-page-application"
 	},
   "vars": {
-    "API_URL": "/api"
+    "API_URL": "http://localhost:8787/"
   }
 }
